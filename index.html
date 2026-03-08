@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<title>8 de Marzo</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+background:white;
+margin:0;
+font-family:Arial;
+text-align:center;
+overflow-x:hidden;
+}
+
+/* TITULO */
+
+#titulo{
+font-family:'Great Vibes', cursive;
+font-size:90px;
+color:black;
+margin-top:40px;
+}
+
+/* SUBTITULO */
+
+#subtitulo{
+font-size:32px;
+margin-top:10px;
+letter-spacing:2px;
+}
+
+/* SILUETA */
+
+.silueta{
+width:220px;
+margin-top:30px;
+animation:flotar 4s ease-in-out infinite;
+}
+
+@keyframes flotar{
+0%{transform:translateY(0);}
+50%{transform:translateY(-15px);}
+100%{transform:translateY(0);}
+}
+
+/* MENSAJE */
+
+.mensaje{
+width:70%;
+margin:auto;
+font-size:20px;
+line-height:1.8;
+margin-top:30px;
+color:black;
+}
+
+/* BOTON */
+
+button{
+margin-top:20px;
+padding:15px 35px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:black;
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+/* RECUERDOS */
+
+#recuerdos{
+display:none;
+margin-top:40px;
+animation:fade 2s;
+}
+
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+img{
+width:240px;
+margin:10px;
+border-radius:15px;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+/* TEXTO BIBLICO */
+
+.textoBiblico{
+font-family:Arial;
+font-size:20px;
+font-weight:bold;
+width:70%;
+margin:auto;
+margin-top:20px;
+line-height:1.7;
+}
+
+/* CORAZONES */
+
+.corazon{
+position:fixed;
+bottom:-20px;
+font-size:24px;
+animation:subir linear infinite;
+}
+
+@keyframes subir{
+0%{transform:translateY(0);}
+100%{transform:translateY(-100vh);}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- AUDIO -->
+
+<audio id="musica" loop>
+<source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<h1 id="titulo"></h1>
+
+<h2 id="subtitulo">8 DE MARZO</h2>
+
+<img src="mujer.png" class="silueta">
+
+<br>
+
+<button onclick="reproducirMusica()">▶ Reproducir música</button>
+
+<div class="mensaje">
+
+<p>
+Hoy recordamos a todas las mujeres que lucharon con valentía
+por la igualdad, la justicia y el respeto.
+</p>
+
+<p>
+Gracias a su fuerza hoy podemos celebrar
+la libertad y la dignidad de cada mujer.
+</p>
+
+<p>
+En cada madre que guía con ternura, en cada hija que sueña con un futuro mejor,
+en cada hermana o amiga que ofrece apoyo en los momentos difíciles,
+se refleja esa esencia de la mujer virtuosa: firme ante la adversidad,
+generosa en el amor y luminosa en la esperanza.
+</p>
+
+<p>
+Por ello, en este día especial no solo celebramos a las mujeres,
+sino que también reconocemos la profundidad de su legado.
+Su presencia no es un simple detalle en la historia de la humanidad,
+sino una fuerza silenciosa que la impulsa hacia adelante.
+</p>
+
+<p>
+Que Dios continúe bendiciendo sus vidas,
+fortaleciendo su espíritu y guiando cada uno de sus pasos,
+para que sigan siendo luz, inspiración y esperanza para el mundo.
+</p>
+
+</div>
+
+<button onclick="mostrarRecuerdos()">📷 RECUERDOS</button>
+
+<div id="recuerdos">
+
+<img src="foto1.jpg">
+
+<p class="textoBiblico">
+En este Día Internacional de la Mujer, celebramos a la mujer virtuosa descrita en la Biblia,
+cuyo valor, como dice Proverbios 31:10, sobrepasa al de las piedras preciosas.
+Mujer que, como madre y hermana, sostiene con amor, sabiduría y fe a quienes la rodean.
+En su ternura habita la fortaleza, y en su entrega silenciosa florece la esperanza.
+Hoy honramos su vida, reflejo de la gracia y la bendición de Dios. 🌷📖
+</p>
+
+</div>
+
+<script>
+
+/* MAQUINA DE ESCRIBIR */
+
+let texto="Feliz Día de la Mujer";
+let i=0;
+let titulo=document.getElementById("titulo");
+
+function escribir(){
+
+if(i<texto.length){
+
+titulo.innerHTML+=texto.charAt(i);
+i++;
+
+setTimeout(escribir,120);
+
+}
+
+else{
+
+setTimeout(()=>{
+titulo.innerHTML="";
+i=0;
+escribir();
+},2000);
+
+}
+
+}
+
+escribir();
+
+/* BOTON REPRODUCIR MUSICA */
+
+function reproducirMusica(){
+
+let musica=document.getElementById("musica");
+
+musica.play();
+
+}
+
+/* MOSTRAR RECUERDOS */
+
+function mostrarRecuerdos(){
+
+document.getElementById("recuerdos").style.display="block";
+
+}
+
+/* CORAZONES FLOTANDO */
+
+function crearCorazon(){
+
+let corazon=document.createElement("div");
+
+corazon.classList.add("corazon");
+
+corazon.innerHTML="❤️";
+
+corazon.style.left=Math.random()*100+"vw";
+
+corazon.style.animationDuration=(4+Math.random()*4)+"s";
+
+document.body.appendChild(corazon);
+
+setTimeout(()=>{corazon.remove();},8000);
+
+}
+
+setInterval(crearCorazon,800);
+
+</script>
+
+</body>
+
+</html>
